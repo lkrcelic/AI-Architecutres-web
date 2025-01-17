@@ -1,0 +1,1247 @@
+<!DOCTYPE html>
+<html lang="en"> 
+<head>
+    <title>Architecture AI</title>
+    
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <meta name="description" content="Primjena AI alata u arhitekturi">
+    <meta name="author" content="Lovro Krčelić, Ivan Bilobrk">
+    <link rel="shortcut icon" href="favicon.ico"> 
+    
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome JS-->
+    <script defer src="assets/fontawesome/js/all.min.js"></script>
+    
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.2/styles/atom-one-dark.min.css">
+    <link rel="stylesheet" href="assets/plugins/simplelightbox/simple-lightbox.min.css">
+
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/theme.css">
+
+	
+	<style>
+		/* Container for both images (left) and bullets (right) */
+		.docs-section-lovro {
+		display: flex;
+		align-items: flex-start; /* Align items from the top */
+		gap: 40px; /* Space between the image column and the bullet column */
+		}
+
+		/* Left column: images */
+		.docs-images-lovro {
+		width: 40%; /* Images take 40% of available space */
+		display: flex;
+		flex-direction: column;
+		align-items: center; /* Center images horizontally */
+		gap: 20px; /* Fixed vertical space between images */
+		}
+
+		.docs-images-lovro img {
+		width: 100%; /* Fill the 40% column width */
+		height: auto; /* Maintain original aspect ratio */
+		display: block; /* Ensure the image behaves as a block element */
+		cursor: pointer; /* Indicate images are clickable */
+		transition: transform 0.3s ease, box-shadow 0.3s ease; /* Add smooth transitions */
+		}
+
+		/* Hover effect for images */
+		.docs-images-lovro img:hover {
+		transform: scale(1.05); /* Slightly enlarge on hover */
+		box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Add a shadow for focus */
+		}
+
+		/* Right column: bullet points */
+		.docs-list-lovro {
+		width: 60%; /* Bullets take remaining 60% */
+		display: flex;
+		flex-direction: column;
+		}
+
+		.docs-list-lovro ul {
+		display: flex;
+		flex-direction: column;
+		gap: 20px; /* Add space between bullet points */
+		margin: 0; /* Reset default margin */
+		padding-left: 1.5em; /* Indent for bullet visibility */
+		}
+
+		.docs-list-lovro ul li {
+		line-height: 1.6; /* Improve readability of each bullet point */
+		}
+
+		.image-modal {
+		display: none; /* Initially hidden */
+		position: fixed; /* Fixed position to ensure it stays on screen */
+		top: 0;
+		left: 0;
+		width: 100vw; /* Full width of the viewport */
+		height: 100vh; /* Full height of the viewport */
+		background: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+		z-index: 1000; /* Place it above other content */
+		display: flex; /* Use Flexbox to center content */
+		align-items: center; /* Vertically center image */
+		justify-content: center; /* Horizontally center image */
+		}
+
+		.image-modal img {
+		max-width: 90%; /* Image takes up to 90% of the screen width */
+		max-height: 90%; /* Image takes up to 90% of the screen height */
+		border-radius: 8px; /* Optional: rounded corners */
+		box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Add a shadow around the image */
+		}
+
+	  </style>
+</head> 
+
+<body class="docs-page">    
+    <header class="header fixed-top">	    
+        <div class="branding docs-branding">
+            <div class="container-fluid position-relative py-2">
+                <div class="docs-logo-wrapper">
+					<button id="docs-sidebar-toggler" class="docs-sidebar-toggler docs-sidebar-visible me-2 d-xl-none" type="button">
+	                    <span></span>
+	                    <span></span>
+	                    <span></span>
+	                </button>
+					<div class="site-logo"><a class="navbar-brand" href="index.html"><img class="logo-icon me-2" src="assets/images/logo.webp" alt="logo" style="width: 50px; height: auto;"><span class="logo-text">AI<span class="text-alt"> Arhitektura</span></span></a></div>
+                </div><!--//docs-logo-wrapper-->
+            </div><!--//container-->
+        </div><!--//branding-->
+    </header><!--//header-->
+    
+    
+    <div class="docs-wrapper">
+	    <div id="docs-sidebar" class="docs-sidebar">
+		    <div class="top-search-box d-lg-none p-3">
+                <form class="search-form">
+		            <input type="text" placeholder="Search the docs..." name="search" class="form-control search-input">
+		            <button type="submit" class="btn search-btn" value="Search"><i class="fas fa-search"></i></button>
+		        </form>
+            </div>
+		    <nav id="docs-nav" class="docs-nav navbar">
+			    <ul class="section-items list-unstyled nav flex-column pb-3">
+				    <li class="nav-item section-title"><a class="nav-link scrollto active" href="#section-1"><span><img src="assets/images/maketLogo.svg" alt=""></span></a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-1">Generiranje tlocrta kuće </a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-2">Generianje slika interijera i eksterijera</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-3">Preuređivanje interijera i eksterijera</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-4">3D render slika</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-1-6">Section Item 1.6</a></li>
+					<li class="nav-item section-title"><a class="nav-link scrollto active" href="#section-2"><span><img src="assets/images/arkLogo.svg" alt="" style="width: 20%"></span></a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-2-1">Generiranje tlocrta zgrade</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-2-2">Section Item 2.2</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-2-3">Section Item 2.3</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-3"><span><img src="assets/images/vitrasLogo.png" alt="" style="width: 20%"/></span></a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-1">Usklađenost zgrade s lokalnim zakonima</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-2">Procjena troškova izgradnje</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-3">Utjecaj klime na zgradu</a></li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-4">Energetska učinkovitost zgrade</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-4"><span class="theme-icon-holder me-2"><i class="fas fa-cogs"></i></span>Architechtures</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-1">Section Item 4.1</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-2">Section Item 4.2</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-3">Section Item 4.3</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-5"><span class="theme-icon-holder me-2"><i class="fas fa-tools"></i></span>Utilities</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-5-1">Section Item 5.1</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-5-2">Section Item 5.2</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-5-3">Section Item 5.3</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-6"><span class="theme-icon-holder me-2"><i class="fas fa-laptop-code"></i></span>Web</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-1">Section Item 6.1</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-2">Section Item 6.2</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-3">Section Item 6.3</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-7"><span class="theme-icon-holder me-2"><i class="fas fa-tablet-alt"></i></span>Mobile</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-7-1">Section Item 7.1</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-7-2">Section Item 7.2</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-7-3">Section Item 7.3</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-8"><span class="theme-icon-holder me-2"><i class="fas fa-book-reader"></i></span>Resources</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-8-1">Section Item 8.1</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-8-2">Section Item 8.2</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-8-3">Section Item 8.3</a></li>
+				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-9"><span class="theme-icon-holder me-2"><i class="fas fa-lightbulb"></i></span>FAQs</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-9-1">Section Item 9.1</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-9-2">Section Item 9.2</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-9-3">Section Item 9.3</a></li>
+			    </ul>
+
+		    </nav><!--//docs-nav-->
+	    </div><!--//docs-sidebar-->
+	    <div class="docs-content">
+		    <div class="container">
+			    <article class="docs-article" id="section-1">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Maket AI</h1>
+					    <section class="docs-intro">
+							<p>Alat koji koristi generativni AI za rane faze projektiranja stambenih kuća. <br/>
+								Koristan arhitektima za dobivanje ideja i inspiracije za svoje projekte. Podržava izvoz projekta u obliku PDF-a i PNG-a te nudi integraciju s alatom Autodesk AutoCAD <img src="assets/images/autoCAD.png" alt="AutoCAD logo" style="width: 80px; height: auto;"> koji je jedan od najčešće korištenih alata za projektiranje u svijetu.<br/>
+							</p>
+							<h3>Paketi i usporedba mogućnosti</h3>
+							<div class="table-responsive my-4">
+								<table class="table table-striped text-center">
+									<thead>
+									<tr>
+										<th scope="col"></th>
+										<th scope="col">Besplatna verzija</th>
+										<th scope="col">Premium verzija</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<th scope="row">Broj istovremenih projekata</th>
+										<td>1</td>
+										<td>Neograničeno</td>
+									</tr>
+									<tr>
+										<th scope="row">Generiranje tlocrta kuća</th>
+										<td>Neograičeno</td>
+										<td>Neograničeno</td>
+									</tr>
+									<tr>
+										<th scope="row">Uređivanje tlocrta kuća</th>
+										<td>Neograičeno</td>
+										<td>Neograičeno</td>
+									</tr>
+									<tr>
+										<th scope="row">Konverzija 2D slika u 3D</th>
+										<td>Neograičeno</td>
+										<td>Neograičeno</td>
+									</tr>
+									<tr>
+										<th scope="row">Rendering mogućnosti</th>
+										<td>Mogućnost rendera prema fiksnom broju unaprijed određenih ograničenja</td>
+										<td>Mogućnost rendera na temelju tekstualnog upita</td>
+									</tr>
+									<tr>
+										<th scope="row">Verzioniranje</th>
+										<td>Ne</td>
+										<td>Da</td>
+									</tr>
+									<tr>
+										<th scope="row">Izvoz u DXF format</th>
+										<td>Ne</td>
+										<td>Da</td>
+									</tr>
+									<tr>
+										<th scope="row">Napredna korisnička podrška</th>
+										<td>Ne</td>
+										<td>Da</td>
+									</tr>
+									<tr>
+										<th scope="row">Cijena</th>
+										<td>$0</td>
+										<td>$288 godišnje</td>
+									</tr>
+									</tbody>
+								</table>
+							</div><!--//table-responsive-->
+							<a href="https://www.maket.ai/" class="btn btn-light"><i class="fas fa-arrow-alt-circle-right me-2"></i> Poveznica na Maket AI stranicu</a>
+							<h3>Mogućnosti alata</h3>
+							<ol>
+								<li>Generiranje tlocrta kuće</li>
+								<li>Generiranje slika interijera i eksterijera</li>
+								<li>Redizajniranje postojećih objekata</li>
+								<li>3D render interija i eksterijera</li>
+							</ol>
+
+							<div class="callout-block callout-block-info">
+
+								<div class="content">
+									<h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-info-circle"></i>
+		                            </span><!--//icon-holder-->
+										Info
+									</h4>
+									<p>U nastavku slijedi pregled besplatnih mogućnosti alata Maket AI.</p>
+								</div><!--//content-->
+							</div><!--//callout-block-->
+						</section><!--//docs-intro-->
+						
+						
+				    </header>
+				    <section class="docs-section" id="item-1-1">
+						<h2 class="section-heading">Generiranje tlocrta kuće</h2>
+						<div>
+							<strong class="me-1">1.</strong><p>Na početnom izborniku potrebno je odabrati opciju Generate plan.</p>
+							<img src="assets/images/maketHome.png" alt="" style="width: 80%; height: auto;">
+						</div>
+						<br/>
+						<div>
+							<strong class="me-1">2.</strong><p>Otvara nam se izbornik gdje možemo sami napraviti tlocrt kuće ili to prepustiti umjetnoj inteligenciji.</p>
+							<img src="assets/images/maketEditor.png" alt="" style="width: 80%; height: auto;"/>
+							<br/><br/>
+							<h3>Dostupna ograničenja za generiranje tlocrta uz pomoć AI-a:</h3>
+							<br/>
+							<h5>Različiti tipovi soba:</h5>
+							<ul>
+								<li>Spavaća soba</li>
+								<li>Kupaonica</li>
+								<li>Kuhinja</li>
+								<li>Dnevni boravak</li>
+								<li>Blagovaonica</li>
+								<li>Predvorje</li>
+								<li>Garaža</li>
+								<li>Soba za preilicu veša</li>
+								<li>Ukoliko želimo da umjetna inteligencija napravi tlocrt kuće, potrebno je odabrati opciju Generate plan.</li>
+							</ul>
+							<h5>Specificiranje stambene površine</h5>
+							<br/>
+							<h5>Ostali detalji:</h5>
+							<ul>
+								<li>Preferenca između walk-in garderobe ili običnih ormara</li>
+								<li>Terase i balkoni</li>
+							</ul>
+						</div>
+						<br/>
+						<div>
+							<strong class="me-1">3.</strong><p>Maket generira nekoliko tlocrta, a na nama je da odaberemo onaj koji nam najviše odgovara.</p>
+							<img src="assets/images/maketTlocrt.png" alt="" style="width: 80%; height: auto;">
+						</div>
+						<br/>
+						<div>
+							<strong class="me-1">4.</strong><p>Ostale mogućnosti Maket uređivača:</p>
+						</div>
+						<br/>
+						<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel" style="width: 80%">
+							<div class="carousel-indicators">
+								<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+								<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+								<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+							</div>
+							<div class="carousel-inner">
+								<div class="carousel-item active">
+									<div class="carousel-caption d-block">
+										<h5>Pregled tlocrta kuće</h5>
+									</div>
+									<img src="assets/images/maketTlocrt1.png" class="d-block w-100" alt="First Slide">
+								</div>
+								<div class="carousel-item">
+									<div class="carousel-caption d-block">
+										<h5>Dodatno ručno uređivanje tlocrta i dodavanje namještaja</h5>
+									</div>
+									<img src="assets/images/maketTlocrt2.png" class="d-block w-100" alt="Second Slide">
+								</div>
+								<div class="carousel-item">
+									<div class="carousel-caption d-block">
+										<h5>3D prikaz tlocrta</h5>
+									</div>
+									<img src="assets/images/maket3D.png" class="d-block w-100" alt="Third Slide">
+								</div>
+							</div>
+							<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Previous</span>
+							</button>
+							<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+								<span class="carousel-control-next-icon" aria-hidden="true"></span>
+								<span class="visually-hidden">Next</span>
+							</button>
+						</div>
+						<br/>
+						<h5>Video upute za generiranje tlocrta kuće:</h5>
+						<br/>
+						<iframe width="80%" height="500px" src="https://www.youtube.com/embed/5t24mLMWiHM" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<h5>Callout Examples:</h5>
+                        <div class="callout-block callout-block-info">
+                            
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-info-circle"></i>
+		                            </span><!--//icon-holder-->
+	                                Informacija
+	                            </h4>
+                                <p>U nastavku slijedi pregled besplatnih mogućnosti alata Maket AI</p>
+                            </div><!--//content-->
+                        </div><!--//callout-block-->
+                        
+                        <div class="callout-block callout-block-warning">
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-bullhorn"></i>
+		                            </span><!--//icon-holder-->
+	                                Warning
+	                            </h4>
+                                <p>Nunc hendrerit odio quis dignissim efficitur. Proin ut finibus libero. Morbi posuere fringilla felis eget sagittis. Fusce sem orci, cursus in tortor <a href="#">link example</a> tellus vel diam viverra elementum.</p>
+                            </div><!--//content-->
+                        </div><!--//callout-block-->
+                        
+                        <div class="callout-block callout-block-success">
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-thumbs-up"></i>
+		                            </span><!--//icon-holder-->
+	                                Tip
+	                            </h4>
+                                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. <a href="#">Link example</a> aenean commodo ligula eget dolor.</p>
+                            </div><!--//content-->
+                        </div><!--//callout-block-->
+                        
+                        <div class="callout-block callout-block-danger me-1">
+                            <div class="content">
+                                <h4 class="callout-title">
+	                                <span class="callout-icon-holder">
+		                                <i class="fas fa-exclamation-triangle"></i>
+		                            </span><!--//icon-holder-->
+	                                Danger
+	                            </h4>
+                                <p>Morbi eget interdum sapien. Donec sed turpis sed nulla lacinia accumsan vitae ut tellus. Aenean vestibulum <a href="#">Link example</a> maximus ipsum vel dignissim. Morbi ornare elit sit amet massa feugiat, viverra dictum ipsum pellentesque. </p>
+                            </div><!--//content-->
+                        </div><!--//callout-block-->
+                        
+                        <h5 class="mt-5">Alert Examples:</h5>
+                        <div class="alert alert-primary" role="alert">
+						  This is a primary alert—check it out!
+						</div>
+						<div class="alert alert-secondary" role="alert">
+						  This is a secondary alert—check it out!
+						</div>
+						<div class="alert alert-success" role="alert">
+						  This is a success alert—check it out!
+						</div>
+						<div class="alert alert-danger" role="alert">
+						  This is a danger alert—check it out!
+						</div>
+						<div class="alert alert-warning" role="alert">
+						  This is a warning alert—check it out!
+						</div>
+						<div class="alert alert-info" role="alert">
+						  This is a info alert—check it out!
+						</div>
+						<div class="alert alert-light" role="alert">
+						  This is a light alert—check it out!
+						</div>
+						<div class="alert alert-dark" role="alert">
+						  This is a dark alert—check it out!
+						</div>
+                        
+                       
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-1-2">
+						<h2 class="section-heading">Generiranje slika interijera i eksterijera</h2>
+						<div>
+							<strong class="me-1">1.</strong><p>Na početnom izborniku potrebno je odabrati opciju Generate image.</p>
+							<img src="assets/images/maketHome.png" alt="" style="width: 80%; height: auto;">
+						</div>
+						<br/>
+						<div>
+							<strong class="me-1">2.</strong>
+							<p>Odaberemo ograničenja ovisno o potrebama.</p>
+							<div style="display: flex; gap: 20%;">
+								<div>
+									<h5>Ograničenja za slike interijera</h5>
+									<ul style="margin: 0; padding: 0; list-style: none;">
+										<li>-vrsta sobe (dnevna soba, spavaća soba, kupaonica, ...)</li>
+										<li>-stil (minimalistički, industrijski, skandinavski, retro, ...)</li>
+										<li>-materijali (drvo, aluminij, cigla, bambus, mramor, ...)</li>
+									</ul>
+								</div>
+								<div>
+									<h5>Ograničenja za slike eksterijera</h5>
+									<ul style="margin: 0; padding: 0; list-style: none;">
+										<li>-stil (minimalistički, industrijski, skandinavski, retro, ...)</li>
+										<li>-materijali (drvo, aluminij, cigla, bambus, mramor, ...)</li>
+										<li>-okruženje (planine, pustinja, grad, ...)</li>
+										<li>-vrijeme (dan, noć, zalazak sunca)</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<br/>
+						<div>
+							<strong class="me-1">3.</strong><p>Pritiskom na tipku <i>Generate</i> Maket generira nekoliko slika.</p>
+							<img src="assets/images/maketGen.png" alt="" style="width: 80%; height: auto;">
+							<br/>
+							<br/>
+							<h5>Video upute za generiranje slika interijera i eksterijera:</h5>
+							<br/>
+							<iframe width="80%" height="500px" src="https://www.youtube.com/embed/C_RUwWXttc0&feature=youtu.be" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+							<div class="callout-block callout-block-info">
+
+								<div class="content">
+									<h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-info-circle"></i>
+		                            </span><!--//icon-holder-->
+										Info
+									</h4>
+									<p>U plaćenoj verziji Maket nudi mogućnost generiranja slika interijera i eksterijera na temelju tesktualnog upita.</p>
+								</div><!--//content-->
+							</div><!--//callout-block-->
+						</div>
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-1-3">
+						<h2 class="section-heading">Preuređivanje interijera i eksterijera</h2>
+						<div>
+							<strong class="me-1">1.</strong><p>Na početnom izborniku potrebno je odabrati opciju Restyle.</p>
+							<img src="assets/images/maketHome.png" alt="" style="width: 80%; height: auto;">
+						</div>
+						<br/>
+						<div>
+							<strong class="me-1">2.</strong><p>Prenesemo sliku prostora kojeg želimo preurediti.</p>
+						</div>
+						<div>
+							<strong class="me-1">3.</strong>
+							<p>Odaberemo ograničenja ovisno o potrebama.</p>
+							<div style="display: flex; gap: 20%;">
+								<div>
+									<h5>Ograničenja za slike interijera</h5>
+									<ul style="margin: 0; padding: 0; list-style: none;">
+										<li>-vrsta sobe (dnevna soba, spavaća soba, kupaonica, ...)</li>
+										<li>-stil (minimalistički, industrijski, skandinavski, retro, ...)</li>
+										<li>-materijali (drvo, aluminij, cigla, bambus, mramor, ...)</li>
+									</ul>
+								</div>
+								<div>
+									<h5>Ograničenja za slike eksterijera</h5>
+									<ul style="margin: 0; padding: 0; list-style: none;">
+										<li>-stil (minimalistički, industrijski, skandinavski, retro, ...)</li>
+										<li>-materijali (drvo, aluminij, cigla, bambus, mramor, ...)</li>
+										<li>-okruženje (planine, pustinja, grad, ...)</li>
+										<li>-vrijeme (dan, noć, zalazak sunca)</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<br/>
+						<div>
+							<strong class="me-1">4.</strong><p>Pritiskom na tipku Restyle Maket generira preuređenu sliku prostora.</p>
+							<img src="assets/images/maketRestyle.png" alt="" style="width: 80%; height: auto;">
+						</div>
+						<br/>
+						<h5>Video upute za preuređivanje interijera i eksterijera:</h5>
+						<br/>
+						<iframe width="80%" height="500px" src="https://www.youtube.com/embed/2eqSTpVz_gQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+						<div class="callout-block callout-block-info">
+
+							<div class="content">
+								<h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-info-circle"></i>
+		                            </span><!--//icon-holder-->
+									Info
+								</h4>
+								<p>U plaćenoj verziji Maket nudi mogućnost preuređivanja interijera i eksterijera na temelju tesktualnog upita.</p>
+							</div><!--//content-->
+						</div><!--//callout-block-->
+						<h5>Badges Examples:</h5>
+						<div class="my-4">
+						    <span class="badge badge-primary">Primary</span>
+							<span class="badge badge-secondary">Secondary</span>
+							<span class="badge badge-success">Success</span>
+							<span class="badge badge-danger">Danger</span>
+							<span class="badge badge-warning">Warning</span>
+							<span class="badge badge-info">Info</span>
+							<span class="badge badge-light">Light</span>
+							<span class="badge badge-dark">Dark</span>
+						</div>
+						<h5>Button Examples:</h5>
+						<div class="row my-3">
+                        <div class="col-md-6 col-12">
+                                <ul class="list list-unstyled pl-0">
+                                    <li><a href="#" class="btn btn-primary">Primary Button</a></li>
+                                    <li><a href="#" class="btn btn-secondary">Secondary Button</a></li>
+                                    <li><a href="#" class="btn btn-light">Light Button</a></li>
+                                    <li><a href="#" class="btn btn-success">Succcess Button</a></li>
+                                    <li><a href="#" class="btn btn-info">Info Button</a></li>
+                                    <li><a href="#" class="btn btn-warning">Warning Button</a></li>
+                                    <li><a href="#" class="btn btn-danger">Danger Button</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <ul class="list list-unstyled pl-0">
+                                    <li><a href="#" class="btn btn-primary"><i class="fas fa-download me-2"></i> Download Now</a></li>
+                                    <li><a href="#" class="btn btn-secondary"><i class="fas fa-book me-2"></i> View Docs</a></li>
+                                    <li><a href="#" class="btn btn-light"><i class="fas fa-arrow-alt-circle-right me-2"></i> View Features</a></li>
+                                    <li><a href="#" class="btn btn-success"><i class="fas fa-code-branch me-2"></i> Fork Now</a></li>
+                                    <li><a href="#" class="btn btn-info"><i class="fas fa-play-circle me-2"></i> Find Out Now</a></li>
+                                    <li><a href="#" class="btn btn-warning"><i class="fas fa-bug me-2"></i> Report Bugs</a></li>
+                                    <li><a href="#" class="btn btn-danger"><i class="fas fa-exclamation-circle me-2"></i> Submit Issues</a></li>
+                                </ul>
+                            </div>
+                        </div><!--//row-->
+                        
+                        <h5>Progress Examples:</h5>
+                        <div class="my-4">
+	                        <div class="progress my-4">
+								<div class="progress-bar bg-success" role="progressbar" style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<div class="progress my-4">
+							    <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<div class="progress my-4">
+							    <div class="progress-bar bg-warning" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+							<div class="progress my-4">
+							    <div class="progress-bar bg-danger" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+							</div>
+                        </div>
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-1-4">
+						<h2 class="section-heading">3D render slika</h2>
+						<div>
+							<strong class="me-1">1.</strong><p>Na početnom izborniku potrebno je odabrati opciju Restyle.</p>
+							<img src="assets/images/maketHome.png" alt="" style="width: 80%; height: auto;">
+						</div>
+						<br/>
+						<div>
+							<strong class="me-1">2.</strong><p>Na donjem izborniku odaberemo opciju Render.</p>
+							<img src="assets/images/maketHome.png" alt="" style="width: 80%; height: auto;">
+						</div>
+						<br/>
+						<div>
+							<strong class="me-1">3.</strong>
+							<p>Odaberemo ograničenja ovisno o potrebama.</p>
+							<div style="display: flex; gap: 10%;">
+								<div>
+									<h5>Ograničenja za slike interijera</h5>
+									<ul style="margin: 0; padding: 0; list-style: none;">
+										<li>-vrsta sobe (dnevna soba, spavaća soba, kupaonica, ...)</li>
+										<li>-stil (minimalistički, industrijski, skandinavski, retro, ...)</li>
+										<li>-materijali (drvo, aluminij, cigla, bambus, mramor, ...)</li>
+										<li>-osvijetljenje (dnevna svijetlost ili rasvjeta)</li>
+									</ul>
+								</div>
+								<div>
+									<h5>Ograničenja za slike eksterijera</h5>
+									<ul style="margin: 0; padding: 0; list-style: none;">
+										<li>-stil (minimalistički, industrijski, skandinavski, retro, ...)</li>
+										<li>-materijali (drvo, aluminij, cigla, bambus, mramor, ...)</li>
+										<li>-okruženje (planine, pustinja, grad, ...)</li>
+										<li>-vrijeme (dan, noć, zalazak sunca)</li>
+									</ul>
+								</div>
+								<div>
+									<h5>Ograničenja za slike 2D elevacija</h5>
+									<ul style="margin: 0; padding: 0; list-style: none;">
+										<li>-krov (drvo, aluminij, cigla, bambus, mramor, ...)</li>
+										<li>-stil (minimalistički, industrijski, skandinavski, retro, ...)</li>
+										<li>-fasada (drvo, aluminij, cigla, bambus, mramor, ...)</li>
+									</ul>
+								</div>
+								<div>
+									<h5>Ograničenja za slike tlocrta u boji</h5>
+									<ul style="margin: 0; padding: 0; list-style: none;">
+										<li>-stil (minimalistički, industrijski, skandinavski, retro, ...)</li>
+										<li>-materijali (drvo, aluminij, cigla, bambus, mramor, ...)</li>
+									</ul>
+								</div>
+							</div>
+						</div>
+						<br/>
+						<div>
+							<strong class="me-1">4.</strong><p>Pritiskom na tipku Render Maket generira sliku.</p>
+							<img src="assets/images/maketRender.png" alt="" style="width: 80%; height: auto;">
+						</div>
+						<br/>
+						<h5>Video upute za 3D rendering uz pomoć AI-a:</h5>
+						<br/>
+						<iframe width="80%" height="500px" src="https://www.youtube.com/embed/CmrSecMUT_Q" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</section><!--//section-->
+			    </article>
+			    
+			    <article class="docs-article" id="section-2">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Ark Design AI</h1>
+					    <section class="docs-intro">
+						    <p>Ark je alat namijenjen generiranju nacrta stambenih zgrada. Prilagođava nacrte veličini i obliku zemljišta. Maksimizira iskoristivo područje te nudi i opciju studije izvedivosti uz procjenu troškova. Zamišljen je kao alat ranog procesa razvoja uz mogućnost brzog generiranja nacrta. Za detaljnije radove na projektu postoji mogućnost izvoza Ark projekta u napredniji alat Autodesk Revit.
+								<img src="assets/images/revitLogo.png" style="width: 9%; height: 9%;" alt=""/>
+							</p>
+							<h3>Paketi i usporedba mogućnosti</h3>
+							<div class="table-responsive my-4">
+								<table class="table table-striped text-center">
+									<thead>
+									<tr>
+										<th scope="col"></th>
+										<th scope="col">Besplatna verzija</th>
+										<th scope="col">Pro verzija</th>
+										<th scope="col">Enterprise verzija</th>
+									</tr>
+									</thead>
+									<tbody>
+									<tr>
+										<th scope="row">Broj istovremenih projekata</th>
+										<td>3</td>
+										<td>Neograničeno</td>
+										<td>Neograničeno</td>
+									</tr>
+									<tr>
+										<th scope="row">Broj PDF izvješća</th>
+										<td>3</td>
+										<td>Neograničeno</td>
+										<td>Neograničeno</td>
+									</tr>
+									<tr>
+										<th scope="row">Online tečajevi</th>
+										<td>Da</td>
+										<td>Da</td>
+										<td>Da</td>
+									</tr>
+									<tr>
+										<th scope="row">Preuzimanje projekta u Ark Design AI formatu</th>
+										<td>Ne</td>
+										<td>Da</td>
+										<td>Da</td>
+									</tr>
+									<tr>
+										<th scope="row">Integracija s Revitom</th>
+										<td>Ne</td>
+										<td>Ne</td>
+										<td>Da</td>
+									</tr>
+									<tr>
+										<th scope="row">Ark AI certifikat</th>
+										<td>Ne</td>
+										<td>Da</td>
+										<td>Da</td>
+									</tr>
+									<tr>
+										<th scope="row">Ljudska korisnička podrška</th>
+										<td>Ne</td>
+										<td>Da</td>
+										<td>Da, napredna podrška uz brzo vrijeme odgovora</td>
+									</tr>
+									<tr>
+										<th scope="row">Cijena</th>
+										<td>$0</td>
+										<td>$299 mjesečno</td>
+										<td>Po dogovoru</td>
+									</tr>
+									</tbody>
+								</table>
+							</div><!--//table-responsive-->
+							<a href="https://arkdesign.ai" class="btn btn-light"><i class="fas fa-arrow-alt-circle-right me-2"></i> Poveznica na Ark Design AI stranicu</a>
+						</section><!--//docs-intro-->
+				    </header>
+				     <section class="docs-section" id="item-2-1">
+						<h2 class="section-heading">Generiranje nacrta zgrade</h2>
+						 <div id="carouselExampleIndicators2" class="carousel slide" data-bs-ride="carousel" style="width: 80%">
+							 <div class="carousel-indicators">
+								 <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+								 <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="1" aria-label="Slide 2"></button>
+								 <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="2" aria-label="Slide 3"></button>
+								 <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="3" aria-label="Slide 4"></button>
+								 <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="4" aria-label="Slide 5"></button>
+								 <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="5" aria-label="Slide 6"></button>
+								 <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="6" aria-label="Slide 7"></button>
+								 <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="7" aria-label="Slide 8"></button>
+								 <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="8" aria-label="Slide 9"></button>
+								 <button type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide-to="9" aria-label="Slide 10"></button>
+							 </div>
+							 <div class="carousel-inner">
+								 <div class="carousel-item active">
+									 <div class="carousel-caption d-block">
+										 <h5>Kreiranje novog projekta</h5>
+									 </div>
+									 <img src="assets/images/ark1.png" class="d-block w-100" alt="First Slide">
+								 </div>
+								 <div class="carousel-item">
+									 <div class="carousel-caption d-block">
+										 <h5>Unos osnovnih informacija o projektu</h5>
+									 </div>
+									 <img src="assets/images/ark2.png" class="d-block w-100" alt="Second Slide">
+								 </div>
+								 <div class="carousel-item">
+									 <div class="carousel-caption d-block">
+										 <h5>Odabir vrste zemljišta</h5>
+									 </div>
+									 <img src="assets/images/ark3.png" class="d-block w-100" alt="Third Slide">
+								 </div>
+								 <div class="carousel-item">
+									 <div class="carousel-caption d-block">
+										 <h5>Uređivanje oblika i dimenzije zemljišta</h5>
+									 </div>
+									 <img src="assets/images/ark4.png" class="d-block w-100" alt="Third Slide">
+								 </div>
+								 <div class="carousel-item">
+									 <div class="carousel-caption d-block">
+										 <h5>Uređivanje oblika zgrade</h5>
+									 </div>
+									 <img src="assets/images/ark5.png" class="d-block w-100" alt="Third Slide">
+								 </div>
+								 <div class="carousel-item">
+									 <div class="carousel-caption d-block">
+										 <h5>Odabir etaže za AI generiranje tlocrta</h5>
+									 </div>
+									 <img src="assets/images/ark6.png" class="d-block w-100" alt="Third Slide">
+								 </div>
+								 <div class="carousel-item">
+									 <div class="carousel-caption d-block">
+										 <h5>Unos koliko i kojeg tipa stanova želimo</h5>
+									 </div>
+									 <img src="assets/images/ark7.png" class="d-block w-100" alt="Third Slide">
+								 </div>
+								 <div class="carousel-item">
+									 <div class="carousel-caption d-block">
+										 <h5>Unos detalja o stanovima</h5>
+									 </div>
+									 <img src="assets/images/ark8.png" class="d-block w-100" alt="Third Slide">
+								 </div>
+								 <div class="carousel-item">
+									 <div class="carousel-caption d-block">
+										 <h5>Prikaz generiranog tlocrta s mogučnošću uređivanja</h5>
+									 </div>
+									 <img src="assets/images/ark9.png" class="d-block w-100" alt="Third Slide">
+								 </div>
+								 <div class="carousel-item">
+									 <div class="carousel-caption d-block">
+										 <h5>3D prikaz zgrade</h5>
+									 </div>
+									 <img src="assets/images/ark10.png" class="d-block w-100" alt="Third Slide">
+								 </div>
+								 <div class="carousel-item">
+									 <div class="carousel-caption d-block">
+										 <h5>Detaljan izvještaj o zgradi i cijenama</h5>
+									 </div>
+									 <img src="assets/images/ark11.png" class="d-block w-100" alt="Third Slide">
+								 </div>
+							 </div>
+							 <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="prev">
+								 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+								 <span class="visually-hidden">Previous</span>
+							 </button>
+							 <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators2" data-bs-slide="next">
+								 <span class="carousel-control-next-icon" aria-hidden="true"></span>
+								 <span class="visually-hidden">Next</span>
+							 </button>
+						 </div>
+						 <br/>
+						 <div style="display: flex; gap: 20%;">
+							 <div>
+								 <h3>Tipovi etaža:</h3>
+								 <ul>
+									 <li>Podrum</li>
+									 <li>Prizemlje</li>
+									 <li>Obične etaže</li>
+								 </ul>
+							 </div>
+							 <div>
+								 <h3>Namjene etaža:</h3>
+								 <ul>
+									 <li>Stambene</li>
+									 <li>Za komercijalne svrhe</li>
+									 <li>Parking</li>
+									 <li>Objekti društvene zajednice</li>
+								 </ul>
+							 </div>
+							 <div>
+								 <h3>Tipovi stanova:</h3>
+								 <ul>
+									 <li>Studio</li>
+									 <li>Jednosobni</li>
+									 <li>Dvosobni</li>
+									 <li>Trosobni</li>
+								 </ul>
+							 </div>
+							 <div>
+								 <h3>Ograničenja za generiranje pojedinih stanova</h3>
+								 <ul>
+									 <li>Dužina</li>
+									 <li>Širina</li>
+									 <li>Cijena po m<sup>2</sup></li>
+								 </ul>
+							 </div>
+						 </div>
+						 <div class="callout-block callout-block-info">
+
+							 <div class="content">
+								 <h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-info-circle"></i>
+		                            </span><!--//icon-holder-->
+									 Info
+								 </h4>
+								 <p>Provjera usklađenosti zgrade s regulacijama ovisno o geografskoj lokaciji dostupna je samo za područje New Yorka.</p>
+							 </div><!--//content-->
+						 </div><!--//callout-block-->
+						 <br/>
+						 <h5>Video upute za AI generiranje tlocrta zgrade u alatu Ark Design AI</h5>
+						 <br/>
+						 <iframe width="80%" height="500px" src="https://www.youtube.com/embed/_QeGjWNCaz0" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-2-2">
+						<h2 class="section-heading">Section Item 2.2</h2>
+						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-2-3">
+						<h2 class="section-heading">Section Item 2.3</h2>
+						<p>Vivamus efficitur fringilla ullamcorper. Cras condimentum condimentum mauris, vitae facilisis leo. Aliquam sagittis purus nisi, at commodo augue convallis id. Sed interdum turpis quis felis bibendum imperdiet. Mauris pellentesque urna eu leo gravida iaculis. In fringilla odio in felis ultricies porttitor. Donec at purus libero. Vestibulum libero orci, commodo nec arcu sit amet, commodo sollicitudin est. Vestibulum ultricies malesuada tempor.</p>
+					</section><!--//section-->
+			    </article><!--//docs-article-->
+			    
+			    
+			    <article class="docs-article" id="section-3">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Vitras.ai</h1>
+					    <section class="docs-intro">
+						    <p>Organizacija koja osim alata Vitras.ai već duži niz godina nudi usluge savjetovanja u arhitekturi. Vitras.ai je alat koji služi za generiranje izvješća kao što su procjena troška izgradnje,
+								energetska učinkovitost, usklađenost s lokalnim zakonima i utjecaj klime na objekt. Ideja alata je pružiti
+								arhitektima mogućnost brzog provjeravanja nekoliko inicijalnih ideja. Trenutno je besplatan, a nakon završetka
+								naplaćivat će se.
+							</p>
+						</section><!--//docs-intro-->
+				    </header>
+				     <section class="docs-section" id="item-3-1">
+						<h2 class="section-heading">Provjera zakona koji vrijede za neko geografsko područje</h2>
+						<p>Analiza lokalnih zakona o zoniranju kako bi se osigurala usklađenost razvojnih planova, istraživanje dopuštenih namjena, potencijalnih odstupanja i inovativnih tehnika zoniranja za optimizaciju ishoda projekta.
+						</p>
+						 <div class="callout-block callout-block-info">
+
+							 <div class="content">
+								 <h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-info-circle"></i>
+		                            </span><!--//icon-holder-->
+									 Napomena
+								 </h4>
+								 <p>Ova funkcionalnost dostupna je samo za područje SAD-a.</p>
+							 </div><!--//content-->
+						 </div><!--//callout-block-->
+						 <br/>
+						 <h4>1. </h4>
+						 <p>Na početnom izborniku odaberemo opciju Zoning Report.</p>
+						 <img src="assets/images/vitrasHome.png" alt="" style="width: 80%; height: auto;">
+						 <br/><br/>
+						 <h4>2. </h4>
+						 <p>Upišemo sve informacije o projektu:</p>
+						 <ul>
+							 <li>ime projekta</li>
+							 <li>adresa (u SAD-u)</li>
+							 <li>površina projekta</li>
+							 <li>tip zgrade (bolnica, obiteljska kuća, škola, hotel, ...)</li>
+							 <li>oznake zone</li>
+						 </ul>
+						 <br/>
+						 <div class="container">
+							 <img src="assets/images/vitras1.png" alt="" style="width: 60%; height: auto;"/>
+						 </div>
+						 <br/><br/>
+						 <p>Odaberemo opciju Generate Report, pričekamo te pregledamo generirano izvješće ili ga preuzmemo u PDF formatu.</p>
+						 <br/>
+						 <b>Izvještaj sadrži podatke kao što su:</b>
+						 <ol>
+							 <li>dozvoljene komercijalne djelatnosti u tom području</li>
+							 <li>nužna zelena površina</li>
+							 <li>potrebno održavanje</li>
+							 <li>posebni okolišni uvjeti primjenjivi na to područje</li>
+							 <li>kakav parking se mora napraviti</li>
+							 <li>maksimalna visina objekta</li>
+						 </ol>
+						 <br/><br/>
+						 <h5>Video upute za generiranje izvješća o zakonskim zahtjevima područja:</h5>
+						 <br/>
+						 <iframe width="80%" height="500px" src="https://www.youtube.com/embed/hkh1ZoNZfCk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</section>
+					
+					<section class="docs-section" id="item-3-2">
+						<h2 class="section-heading">Procjena troškova izgradnje</h2>
+						<p>Sveobuhvatna financijska prognoza i analiza procjene za usmjeravanje donošenja odluka za građevinski projekt s detaljnim projekcijama troškova, zahtjevima za financiranjem i procjenama rizika.</p>
+						</p>
+						<div class="callout-block callout-block-info">
+
+							<div class="content">
+								<h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-info-circle"></i>
+		                            </span><!--//icon-holder-->
+									Napomena
+								</h4>
+								<p>Ova funkcionalnost dostupna je samo za područje SAD-a.</p>
+							</div><!--//content-->
+						</div><!--//callout-block-->
+						<br/>
+						<h4>1. </h4>
+						<p>Na početnom izborniku odaberemo opciju Cost Estimating Report.</p>
+						<img src="assets/images/vitrasHome.png" alt="" style="width: 80%; height: auto;">
+						<br/><br/>
+						<h4>2. </h4>
+						<p>Upišemo sve informacije o projektu:</p>
+						<ul>
+							<li>ime projekta</li>
+							<li>adresa (u SAD-u)</li>
+							<li>tip projekta (bolnica, obiteljska kuća, škola, hotel, ...</li>
+							<li>kvaliteta projekta (visoka, srednja, niska)</li>
+							<li>površina objekta</li>
+							<li>planirani početak i kraj projekta</li>
+							<li>procijenjen postotak povećanja mjesečnih troškova uslijed neočekivanih situacija</li>
+						</ul>
+						<br/>
+						<div class="container" style="display: flex; gap: 10px">
+							<img src="assets/images/vitras2.png" alt="" style="width: 33%; height: auto;"/>
+							<img src="assets/images/vitras3.png" alt="" style="width: 33%; height: auto;"/>
+							<img src="assets/images/vitras4.png" alt="" style="width: 33%; height: auto;"/>
+						</div>
+						<br/><br/>
+						<p>Odaberemo opciju Generate Report, pričekamo te pregledamo generirano izvješće ili ga preuzmemo u PDF formatu.</p>
+						<br/>
+						<b>Izvještaj sadrži podatke kao što su:</b>
+						<ol>
+							<li>ukupni troškovi projekta</li>
+							<li>cijena građevinskih radova</li>
+							<li>izračun koliko koje vrste radova koštaju (uređenje interijera, okoliš, struja, ...)</li>
+						</ol>
+						<br/><br/>
+						<h5>Video upute za generiranje izvješća o troškovima projekta:</h5>
+						<br/>
+						<iframe width="80%" height="500px" src="https://www.youtube.com/embed/xBmcjwrqWjo" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</section><!--//section-->
+					
+					<section class="docs-section" id="item-3-3">
+						<h2 class="section-heading">Utjecaj klime na objekt</h2>
+						<p>Klimatska razmatranja projekta pomažu u shvaćanju kako ona utječu na trenutni dizajn identificiranjem prilika.</p>
+						<div class="callout-block callout-block-info">
+
+							<div class="content">
+								<h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-info-circle"></i>
+		                            </span><!--//icon-holder-->
+									Napomena
+								</h4>
+								<p>Ova funkcionalnost dostupna je samo za područje SAD-a.</p>
+							</div><!--//content-->
+						</div><!--//callout-block-->
+						<br/>
+						<h4>1. </h4>
+						<p>Na početnom izborniku odaberemo opciju Climate Analysis Report.</p>
+						<img src="assets/images/vitrasHome.png" alt="" style="width: 80%; height: auto;">
+						<br/><br/>
+						<h4>2. </h4>
+						<p>Upišemo sve informacije o projektu:</p>
+						<ul>
+							<li>ime projekta</li>
+							<li>adresa (u SAD-u)</li>
+						</ul>
+						<br/>
+						<div class="container" style="display: flex; gap: 10px">
+							<img src="assets/images/vitras5.png" alt="" style="width: 60%; height: auto;"/>
+						</div>
+						<br/><br/>
+						<p>Odaberemo opciju Generate Report, pričekamo te pregledamo generirano izvješće ili ga preuzmemo u PDF formatu.</p>
+						<br/>
+						<b>Izvještaj sadrži podatke kao što su:</b>
+						<ol>
+							<li>temperature kroz mjesece</li>
+							<li>vlažnost zraka kroz mjesece</li>
+							<li>radijacija ovisno o strani svijeta</li>
+							<li>smjer puhanja vjetra ovisno o godišnjem dobu</li>
+							<li>preporuka kakvu izolaciju na objekt staviti</li>
+						</ol>
+						<br/><br/>
+						<h5>Video upute za generiranje izvješća o utjecaju klime na objekt:</h5>
+						<br/>
+						<iframe width="80%" height="500px" src="https://www.youtube.com/embed/I8fdgpK6BwE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</section><!--//section-->
+
+					<section class="docs-section" id="item-3-4">
+						<h2>Izvještaj o energetskoj učinkovitosti zgrade</h2>
+						<p>Generiranje izvješća o potrošnji energije s obzirom na razne dizajnerske alternative.</p>
+						<div class="callout-block callout-block-info">
+
+							<div class="content">
+								<h4 class="callout-title">
+	                                <span class="callout-icon-holder me-1">
+		                                <i class="fas fa-info-circle"></i>
+		                            </span><!--//icon-holder-->
+									Napomena
+								</h4>
+								<p>Ova funkcionalnost dostupna je samo za područje SAD-a.</p>
+							</div><!--//content-->
+						</div><!--//callout-block-->
+						<br/>
+						<h4>1. </h4>
+						<p>Na početnom izborniku odaberemo opciju Benchmarking Study Energy Analysis .</p>
+						<img src="assets/images/vitrasHome.png" alt="" style="width: 80%; height: auto;">
+						<br/><br/>
+						<h4>2. </h4>
+						<p>Upišemo sve informacije o projektu:</p>
+						<ul>
+							<li>ime projekta</li>
+							<li>adresa (u SAD-u)</li>
+							<li>površina objekta</li>
+							<li>tip zgrade (bolnica, obiteljska kuća, škola, hotel, ...)</li>
+							<li>energetski kod (posebna oznaka u SAD-u koja specificira koliko energetsku učinkvitost objekt mora imati)</li>
+							<li>koliko površine je okrenutoj kojoj strani svijeta, površina prozora i slično</li>
+						</ul>
+						<br/>
+						<div class="container" style="display: flex; gap: 10px">
+							<img src="assets/images/vitras6.png" alt="" style="width: 60%; height: auto;"/>
+						</div>
+						<br/><br/>
+						<p>Odaberemo opciju Generate Report, pričekamo te pregledamo generirano izvješće ili ga preuzmemo u PDF formatu.</p>
+						<br/>
+						<b>Izvještaj sadrži podatke kao što su:</b>
+						<ol>
+							<li>godišnje emisije CO<sup>2</sup></li>
+							<li>godišnje troškove struje</li>
+							<li>preporuke o tome koliko površine u prozorima moramo imati, koliko krova i slično kako bi imali što manju potrošnju za grijanje i hlađenje</li>
+						</ol>
+						<br/><br/>
+						<h5>Video upute za generiranje izvješća o energetskoj učinkovitoski objekta:</h5>
+						<br/>
+						<iframe width="80%" height="500px" src="https://www.youtube.com/embed/f7w7rQ0cEgY" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					</section>
+			    </article><!--//docs-article-->
+				
+			    <article class="docs-article" id="section-4">
+				    <header class="docs-header">
+					    <h1 class="docs-heading">Architechtures - Generativni AI za projektiranje zgrada</h1>
+					    <section class="docs-intro">
+						    <p>Architechtures je platforma koja koristi generativnu umjetnu inteligenciju kao alat za pomoć u početnim fazama projektiranja stambenih zgrada. Umjesto da u potpunosti zamijeni tradicionalne metode, platforma služi kao podrška arhitektima i investitorima u kreiranju prvotnih ideja i brzom pregledu izvedivosti projekta. Program olakšava definiranje osnovnih projektnih parametara, brzu procjenu usklađenosti te pruža okvirne podatke koji pomažu u daljnjem razvoju koncepta.</p>
+						</section><!--//docs-intro-->
+				    </header>
+					<br/>
+					<br/>
+					<br/>
+
+					<section class="docs-section-lovro" id="how-it-works">
+						
+						<div class="docs-list-lovro">
+						<h2>Ključne mogućnosti</h2>
+						<p>Program nudi sljedeće mogućnosti koje olakšavaju proces projektiranja:</p>
+						<ul>
+							<li>
+								<strong>Unos projektnih parametara:</strong>
+								Omogućuje unos ključnih parametara projekta, uključujući lokaciju, dimenzije, i namjenu zgrade.
+							</li>
+							<li>
+								<strong>Crtanje tlocrta:</strong>
+								Intuitivno crtanje građevinskog područja, katova i odabranih apartmana.
+							</li>
+							<li>
+								<strong>Automatska i ručna izmjena:</strong>
+								Kombinacija AI-a i ručnog uređivanja za prilagodbu zgrade i apartmana prema korisničkim zahtjevima.
+							</li>
+							<li>
+								<strong>Prikaz modela u stvarnom vremenu:</strong>
+								Vizualizacija 3D modela zgrade, dodavanje detalja poput prozora, vrata, terasa, drveća i igrališta.
+							</li>
+							<li>
+								<strong>Ažuriranje troškova:</strong>
+								Prikaz ekonomskog utjecaja svih izmjena uz mogućnost odabira valute i troškovnih parametara.
+							</li>
+							<li>
+								<strong>Analiza osvjetljenja:</strong>
+								Prikaz kako sunce osvjetljava zgradu u različitim vremenskim uvjetima.
+							</li>
+						</ul>
+
+							<br/><br/><br/><br/>
+
+						  <h2>Kako funkcionira</h2>
+						  <p>Koraci izrade projekta pomoću programa:</p>
+						  <ul>
+							<li><strong>Unos lokacije:</strong> Mogućnost unosa lokacije projekta putem mape (ograničeno na podržane lokacije).</li>
+							<li><strong>Kreiranje projekta:</strong> Definirajte osnovne podatke projekta.</li>
+							<li><strong>Crtanje tlocrta:</strong> Crtanje građevinskog područja s mogućnošću dodavanja raznih objekata.</li>
+							<li><strong>Odabir parametara:</strong> Selektiranje zgrade i definiranje njenih parametara poput visine, kata i terasa.</li>
+							<li><strong>Crtanje zgrade:</strong> Postavljanje arhitektonskih elemenata poput katova, prozora, vrata i terasa.</li>
+							<li><strong>Prikaz podataka:</strong> Vizualni prikaz podataka o katovima, apartmanima i ostalim elementima.</li>
+							<li><strong>Ručno uređivanje:</strong> Prilagodba unutarnjeg rasporeda apartmana dodavanjem prozora, vrata i drugih elemenata.</li>
+							<li><strong>Dodavanje vanjskih elemenata:</strong> Dodavanje drveća, travnjaka, igrališta i drugih vanjskih objekata.</li>
+							<li><strong>Prikaz osvjetljenja:</strong> Analiza osvjetljenja objekta i njegovih elemenata kroz simulaciju sunčevog svjetla.</li>
+							<li><strong>Ažuriranje troškova:</strong> Pregled troškova s mogućnošću odabira valute i detaljne analize troškovnih parametara.</li>
+						  </ul>
+						</div>
+
+						<div class="docs-images-lovro">
+							<img src="assets/images/import-location.png" alt="Unos lokacije" />
+							<img src="assets/images/tlocrt.png" alt="Tlocrt" />
+							<img src="assets/images/tlocrt-zgrade.png" alt="Tlocrt zgrade" />
+							<img src="assets/images/3D-model.png" alt="3D model" />
+							<img src="assets/images/costs.png" alt="Troškovnik" />
+						  </div>
+					  </section>
+					  <br/><br/>
+
+					  <section class="docs-section" id="benefits">
+						<h2>Zaključak</h2>
+						<p>
+							Platforma pruža značajne prednosti, uključujući ubrzanje projektiranja, preciznost i transparentnost podataka te fleksibilnost u prilagodbi promjenama. Automatizacija repetitivnih zadataka čini je korisnom za projekte s manjom kreativnom zahtjevnošću.
+						  </p>
+						  <p>
+							Unatoč prednostima, platforma ima izazove poput visoke krivulje učenja i neintuitivnih osnovnih alata, što otežava korištenje za neiskusne korisnike. Primjena promjena može biti spora, a dizajn sučelja u nekim preglednicima nije optimalan.
+						  </p>
+						  <p>
+							Zaključno, platforma ima potencijal za integraciju u arhitektonski workflow, posebno za ponavljajuće projekte. Dodatne dorade i prilagodba tržišnim trendovima osigurale bi njezinu širu primjenu i veću vrijednost.
+						  </p>
+						<br/><br/>
+						<br/><br/>
+							<h4>Video primejer korištenja programa:</h4>
+							<br/>
+							<iframe width="100%" height="500px" src="https://www.youtube.com/embed/2WA3toOtWsw?si=KI6prQSkBnLyIa2l" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					  </section>
+					  
+				
+				
+			    </article><!--//docs-article-->
+
+					<!-- Modal for Enlarged Image -->
+					<div class="image-modal" id="imageModal">
+						<img id="modalImage" src="" alt="Enlarged View" />
+					</div>
+
+			    <footer class="footer">
+				    <div class="container text-center py-5">
+				        <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+			            <small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
+				        <ul class="social-list list-unstyled pt-4 mb-0">
+						    <li class="list-inline-item"><a href="#"><i class="fa-brands fa-github fa-fw"></i></a></li> 
+				            <li class="list-inline-item"><a href="#"><i class="fa-brands fa-x-twitter fa-fw"></i></a></li>
+				            <li class="list-inline-item"><a href="#"><i class="fa-brands fa-slack fa-fw"></i></a></li>
+				            <li class="list-inline-item"><a href="#"><i class="fa-brands fa-product-hunt fa-fw"></i></a></li>
+				            <li class="list-inline-item"><a href="#"><i class="fa-brands fa-facebook-f fa-fw"></i></a></li>
+				            <li class="list-inline-item"><a href="#"><i class="fa-brands fa-instagram fa-fw"></i></a></li>
+				        </ul><!--//social-list-->
+				    </div>
+			    </footer>
+		    </div> 
+	    </div>
+    </div><!--//docs-wrapper-->
+   
+	<script>
+		// Select all images and modal elements
+		const images = document.querySelectorAll(".docs-images-lovro img");
+		const modal = document.getElementById("imageModal");
+		const modalImage = document.getElementById("modalImage");
+	  
+		// Add click event to each image
+		images.forEach((img) => {
+		  img.addEventListener("click", () => {
+			modalImage.src = img.src; // Set modal image source
+			modal.style.display = "flex"; // Show modal
+		  });
+		});
+	  
+		// Close modal when clicking outside the image
+		modal.addEventListener("click", () => {
+		  modal.style.display = "none"; // Hide modal
+		});
+	  </script>
+       
+    <!-- Javascript -->          
+    <script src="assets/plugins/popper.min.js"></script>
+    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>  
+    
+    
+    <!-- Page Specific JS -->
+    <script src="assets/plugins/smoothscroll.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/highlight.min.js"></script>
+    <script src="assets/js/highlight-custom.js"></script> 
+    <script src="assets/plugins/simplelightbox/simple-lightbox.min.js"></script>      
+    <script src="assets/plugins/gumshoe/gumshoe.polyfills.min.js"></script> 
+    <script src="assets/js/docs.js"></script> 
+
+</body>
+</html> 
+
