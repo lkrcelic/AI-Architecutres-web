@@ -76,7 +76,6 @@
 		}
 
 		.image-modal {
-		display: none; /* Initially hidden */
 		position: fixed; /* Fixed position to ensure it stays on screen */
 		top: 0;
 		left: 0;
@@ -87,6 +86,7 @@
 		display: flex; /* Use Flexbox to center content */
 		align-items: center; /* Vertically center image */
 		justify-content: center; /* Horizontally center image */
+		display: none; /* Initially hidden */
 		}
 
 		.image-modal img {
@@ -136,35 +136,29 @@
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-2-1">Generiranje tlocrta zgrade</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-2-2">Section Item 2.2</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-2-3">Section Item 2.3</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-3"><span><img src="assets/images/vitrasLogo.png" alt="" style="width: 20%"/></span></a></li>
+
+				    <li class="nav-item section-title mt-3">
+						<a class="nav-link scrollto" href="#section-3">
+							<span>
+								<img src="assets/images/vitrasLogo.png" alt="" style="width: 20%"/>
+							</span>
+						</a>
+					</li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-1">Usklađenost zgrade s lokalnim zakonima</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-2">Procjena troškova izgradnje</a></li>
 				    <li class="nav-item"><a class="nav-link scrollto" href="#item-3-3">Utjecaj klime na zgradu</a></li>
 					<li class="nav-item"><a class="nav-link scrollto" href="#item-3-4">Energetska učinkovitost zgrade</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-4"><span class="theme-icon-holder me-2"><i class="fas fa-cogs"></i></span>Architechtures</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-1">Section Item 4.1</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-2">Section Item 4.2</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-3">Section Item 4.3</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-5"><span class="theme-icon-holder me-2"><i class="fas fa-tools"></i></span>Utilities</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-5-1">Section Item 5.1</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-5-2">Section Item 5.2</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-5-3">Section Item 5.3</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-6"><span class="theme-icon-holder me-2"><i class="fas fa-laptop-code"></i></span>Web</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-1">Section Item 6.1</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-2">Section Item 6.2</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-6-3">Section Item 6.3</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-7"><span class="theme-icon-holder me-2"><i class="fas fa-tablet-alt"></i></span>Mobile</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-7-1">Section Item 7.1</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-7-2">Section Item 7.2</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-7-3">Section Item 7.3</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-8"><span class="theme-icon-holder me-2"><i class="fas fa-book-reader"></i></span>Resources</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-8-1">Section Item 8.1</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-8-2">Section Item 8.2</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-8-3">Section Item 8.3</a></li>
-				    <li class="nav-item section-title mt-3"><a class="nav-link scrollto" href="#section-9"><span class="theme-icon-holder me-2"><i class="fas fa-lightbulb"></i></span>FAQs</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-9-1">Section Item 9.1</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-9-2">Section Item 9.2</a></li>
-				    <li class="nav-item"><a class="nav-link scrollto" href="#item-9-3">Section Item 9.3</a></li>
+				    <li class="nav-item section-title mt-3">
+						<a class="nav-link scrollto" href="#section-4">
+							<span class="theme-icon me-2">
+								<img src="assets/images/Architecture.svg" style="width: 50%" />
+							</span>
+						</a>
+					</li>
+					<li class="nav-item"><a class="nav-link scrollto" href="#item-4-0">Paketi i usporedba mogućnosti</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-1">Ključne Mogućnosti</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-2">Kako funkcionira</a></li>
+				    <li class="nav-item"><a class="nav-link scrollto" href="#item-4-3">Zaključak</a></li>
 			    </ul>
 
 		    </nav><!--//docs-nav-->
@@ -1093,19 +1087,97 @@
 					</section>
 			    </article><!--//docs-article-->
 				
+
+
 			    <article class="docs-article" id="section-4">
 				    <header class="docs-header">
 					    <h1 class="docs-heading">Architechtures - Generativni AI za projektiranje zgrada</h1>
+						<br/>
+						<a href="https://architechtures.com/en" class="btn btn-light"><i class="fas fa-arrow-alt-circle-right me-2"></i>Isprobaj aplikaciju</a>						
+						<br/>
+						<br/>
 					    <section class="docs-intro">
 						    <p>Architechtures je platforma koja koristi generativnu umjetnu inteligenciju kao alat za pomoć u početnim fazama projektiranja stambenih zgrada. Umjesto da u potpunosti zamijeni tradicionalne metode, platforma služi kao podrška arhitektima i investitorima u kreiranju prvotnih ideja i brzom pregledu izvedivosti projekta. Program olakšava definiranje osnovnih projektnih parametara, brzu procjenu usklađenosti te pruža okvirne podatke koji pomažu u daljnjem razvoju koncepta.</p>
 						</section><!--//docs-intro-->
 				    </header>
 					<br/>
 					<br/>
+					<section id="item-4-0">
+						<h2>Paketi i usporedba mogućnosti</h2>
+							<div class="table-responsive my-4">
+								<table class="table table-striped text-center">
+									<thead>
+									  <tr>
+										<th scope="col"></th>
+										<th scope="col">PRO</th>
+										<th scope="col">Business</th>
+										<th scope="col">Enterprise</th>
+									  </tr>
+									</thead>
+									<tbody>
+									  <tr>
+										<th scope="row">Broj istovremenih projekata</th>
+										<td>Do 200 dizajna u oblaku</td>
+										<td>Do 1.200 dizajna u oblaku</td>
+										<td>Neograničeno</td>
+									  </tr>
+									  <tr>
+										<th scope="row">Generiranje tlocrta kuća</th>
+										<td>Da (AI)</td>
+										<td>Da (AI)</td>
+										<td>Da (AI)</td>
+									  </tr>
+									  <tr>
+										<th scope="row">Uređivanje tlocrta kuća</th>
+										<td>AI-asistirano (600 min/mj.) + ručno</td>
+										<td>AI-asistirano (3.600 min/mj.) + ručno</td>
+										<td>Neograničeno AI-asistirano + ručno</td>
+									  </tr>
+									  <tr>
+										<th scope="row">Konverzija 2D slika u 3D</th>
+										<td>Da</td>
+										<td>Da</td>
+										<td>Da</td>
+									  </tr>
+									  <tr>
+										<th scope="row">Rendering mogućnosti</th>
+										<td>Da</td>
+										<td>Da</td>
+										<td>Da</td>
+									  </tr>
+									  <tr>
+										<th scope="row">Verzioniranje</th>
+										<td>Da</td>
+										<td>Da</td>
+										<td>Da</td>
+									  </tr>
+									  <tr>
+										<th scope="row">Izvoz u DXF format <br/>(i ostalo)</th>
+										<td>Da (XLSX, DXF, IFC)</td>
+										<td>Da (XLSX, DXF, IFC)</td>
+										<td>Da (XLSX, DXF, IFC)</td>
+									  </tr>
+									  <tr>
+										<th scope="row">Napredna korisnička podrška</th>
+										<td>Srebrna (E-mail, odgovor do 3 radna dana)</td>
+										<td>Zlatna (E-mail i video pozivi, odgovor do 1 radni dan)</td>
+										<td>Platinasta (prilagođena obuka i podrška)</td>
+									  </tr>
+									  <tr>
+										<th scope="row">Cijena</th>
+										<td>€588 godišnje <br>(€49 mj. naplaćeno godišnje)</td>
+										<td>€3.588 godišnje ili €299 mjesečno</td>
+										<td>Po dogovoru</td>
+									  </tr>
+									</tbody>
+								  </table> 
+							</div><!--//table-responsive-->
+					</section><!--//docs-intro-->
+					<br/>
+					<br/>
 					<br/>
 
-					<section class="docs-section-lovro" id="how-it-works">
-						
+					<section id="item-4-1" class="docs-section-lovro">
 						<div class="docs-list-lovro">
 						<h2>Ključne mogućnosti</h2>
 						<p>Program nudi sljedeće mogućnosti koje olakšavaju proces projektiranja:</p>
@@ -1138,7 +1210,7 @@
 
 							<br/><br/><br/><br/>
 
-						  <h2>Kako funkcionira</h2>
+						  <h2 id="item-4-2">Kako funkcionira</h2>
 						  <p>Koraci izrade projekta pomoću programa:</p>
 						  <ul>
 							<li><strong>Unos lokacije:</strong> Mogućnost unosa lokacije projekta putem mape (ograničeno na podržane lokacije).</li>
@@ -1164,7 +1236,7 @@
 					  </section>
 					  <br/><br/>
 
-					  <section class="docs-section" id="benefits">
+					  <section id="item-4-3" class="docs-section" id="benefits">
 						<h2>Zaključak</h2>
 						<p>
 							Platforma pruža značajne prednosti, uključujući ubrzanje projektiranja, preciznost i transparentnost podataka te fleksibilnost u prilagodbi promjenama. Automatizacija repetitivnih zadataka čini je korisnom za projekte s manjom kreativnom zahtjevnošću.
@@ -1181,9 +1253,8 @@
 							<br/>
 							<iframe width="100%" height="500px" src="https://www.youtube.com/embed/2WA3toOtWsw?si=KI6prQSkBnLyIa2l" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 					  </section>
-					  
-				
-				
+					  <br/>
+					  <br/>
 			    </article><!--//docs-article-->
 
 					<!-- Modal for Enlarged Image -->
@@ -1193,7 +1264,6 @@
 
 			    <footer class="footer">
 				    <div class="container text-center py-5">
-				        <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
 			            <small class="copyright">Designed with <span class="sr-only">love</span><i class="fas fa-heart" style="color: #fb866a;"></i> by <a class="theme-link" href="http://themes.3rdwavemedia.com" target="_blank">Xiaoying Riley</a> for developers</small>
 				        <ul class="social-list list-unstyled pt-4 mb-0">
 						    <li class="list-inline-item"><a href="#"><i class="fa-brands fa-github fa-fw"></i></a></li> 
@@ -1210,23 +1280,25 @@
     </div><!--//docs-wrapper-->
    
 	<script>
-		// Select all images and modal elements
-		const images = document.querySelectorAll(".docs-images-lovro img");
-		const modal = document.getElementById("imageModal");
-		const modalImage = document.getElementById("modalImage");
-	  
-		// Add click event to each image
-		images.forEach((img) => {
-		  img.addEventListener("click", () => {
-			modalImage.src = img.src; // Set modal image source
-			modal.style.display = "flex"; // Show modal
-		  });
+		document.addEventListener("DOMContentLoaded", () => {
+			const images = document.querySelectorAll(".docs-images-lovro img");
+			const modal = document.getElementById("imageModal");
+			const modalImage = document.getElementById("modalImage");
+
+			images.forEach((img) => {
+				img.addEventListener("click", () => {
+					if (img.src) {
+						modalImage.src = img.src; // Set modal image source
+						modal.style.display = "flex"; // Show modal
+					}
+				});
+			});
+
+			modal.addEventListener("click", () => {
+				modal.style.display = "none"; // Hide modal
+			});
 		});
-	  
-		// Close modal when clicking outside the image
-		modal.addEventListener("click", () => {
-		  modal.style.display = "none"; // Hide modal
-		});
+
 	  </script>
        
     <!-- Javascript -->          
